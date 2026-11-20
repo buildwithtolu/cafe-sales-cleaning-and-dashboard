@@ -27,8 +27,29 @@ The "Unknown" labels left in Item, Payment Method and Location are deliberate ca
 ## Known limitation
 Total Spent does not equal Quantity × Price Per Unit in some rows (largest gap found: 16.0). These rows were flagged, not corrected. The number of affected rows was not counted.
 
+## Dashboard
+![Cafe Sales Dashboard](dashboard.png)
+
+Built in Power BI from the cleaned data (9,540 transactions, 85.13K total spent, about 29K units).
+
+### Key insights
+- Three items bring in about half the revenue. Salad, Sandwich and Smoothie total roughly 42.5K, and they are the three highest-priced items.
+- Revenue follows price, not popularity. Units sold are similar across items (about 2.8K to 3.4K each), so cheaper items rank lower in revenue.
+- No seasonality. Monthly spend stays within about 10% all year.
+- Payment methods are evenly split. Cash, Credit Card and Digital Wallet are each about 20K.
+
+### Caveats
+- "Unknown" is about 39% of units by Location and about 30% of spend by Payment Method (missing in the source data). It is kept and shown in grey, so these two breakdowns are unreliable for decisions.
+- Revenue uses the recorded Total Spent, which does not always equal Quantity × Price (see the Known limitation above).
+- The data is unusually even, which suggests it is synthetic. Treat the insights as analysis practice, not business advice.
+
+### Suggested actions
+- Make Location and Payment Method required fields at data capture.
+- Before treating February as weak, compare revenue per day.
+- Test any price change with a limited trial, since each item has only one price in this data.
+
 ## Files
 - cafe-sales-data-cleaning.ipynb: the full analysis and documented decisions
 - cleaned_data.csv: the cleaned output
 
-Tools: Python, pandas, Jupyter
+Tools: Python, pandas, Jupyter, Power BI
